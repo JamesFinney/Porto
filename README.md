@@ -1,2 +1,4 @@
 # Porto
-Collection of helper/utility/etc classes to make things easier (couldn't think of a decent name, so it's now named after my dog)
+A collection of utility, extension, attribute, and miscellaneous classes to assist your development. This includes the likes of an EnvironmentVariable attribute and parser for automatically loading variables into an object, and a file/directory access wrappers with interfaces to assist unit testing.
+
+

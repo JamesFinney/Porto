@@ -2,7 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Porto</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/JamesFinney/Porto</RepositoryUrl>
+    <Company>James Finney</Company>
+    <Authors>James Finney</Authors>
+    <Description>A collection of utility, extension, attribute, and miscellaneous classes to assist your development. This includes the likes of an EnvironmentVariable attribute and parser for automatically loading variables into an object, and a file/directory access wrappers with interfaces to assist unit testing.</Description>
+    <Copyright>James Finney</Copyright>
+    <PackageProjectUrl>https://github.com/JamesFinney/Porto</PackageProjectUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
