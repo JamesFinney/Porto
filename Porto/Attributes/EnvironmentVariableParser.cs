@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 
 namespace Porto.Attributes
 {
-    public class EnvironmentVariableParser
+    public static class EnvironmentVariableParser
     {
         /// <summary>
         /// Processes the environment variables and returns an object of the parsed values of the type provided.
@@ -26,12 +28,11 @@ namespace Porto.Attributes
 
                     if (envValue != null)
                     {
-                        // convert and set the value on the instance
                         prop.SetValue(instance, ConvertType(prop, envValue));
                     }
-                    else if (!attribute.Optional)
+                    else if (attribute.Presence == Presence.Mandatory)
                     {
-                        throw new Exception($"Mandatory environment variable '{attribute.Name}' is not set.");
+                        throw new Exception($"Mandatory environment variable '{attribute.Name}' has not been set.");
                     }
                 }
             }
@@ -47,6 +48,19 @@ namespace Porto.Attributes
         /// <returns>The converted value.</returns>
         private static object ConvertType(PropertyInfo propInfo, string value)
         {
+            if (string.IsNullOrEmpty(value))
+                return null;
+
+            if (propInfo.PropertyType == typeof(List<string>))
+            {
+                return value.Split(",", StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToList();
+            }
+
+            if (propInfo.PropertyType == typeof(string[]))
+            {
+                return value.Split(",", StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray();
+            }
+
             var converter = TypeDescriptor.GetConverter(propInfo.PropertyType);
             return converter.ConvertFromString(value);
         }

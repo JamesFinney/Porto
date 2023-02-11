@@ -6,9 +6,13 @@ using System.Net;
 
 namespace Porto.Utlities
 {
-    public class PNetworkUtility
+    /// <summary>
+    /// Various network-based utility methods.
+    /// </summary>
+    public class NetworkUtility : INetworkUtility
     {
-        public static string GetIpAddress()
+        /// <inheritdoc/>
+        public string GetIpAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var ip in host.AddressList)
@@ -21,11 +25,8 @@ namespace Porto.Utlities
             throw new Exception("No network adapters with an IPv4 address in the system");
         }
 
-        /// <summary>
-        /// Gets all IP addresses associated with the current host.
-        /// </summary>
-        /// <returns>A list of all IP addresses including local host.</returns>
-        public static List<IPAddress> GetIpAddresses()
+        /// <inheritdoc/>
+        public List<IPAddress> GetIpAddresses()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
             var ipAddresses = new List<IPAddress>();

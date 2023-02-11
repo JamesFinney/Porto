@@ -3,7 +3,23 @@
 namespace Porto.Attributes
 {
     /// <summary>
-    /// Attribute for marking properties which will be populated from an environment variable.
+    /// Defines whether the environment variable is Mandatory or Optional.
+    /// </summary>
+    public enum Presence
+    {
+        /// <summary>
+        /// The environment variable does not have to be set.
+        /// </summary>
+        Optional,
+
+        /// <summary>
+        /// The environment variable must be set, otherwise an exception will be thrown.
+        /// </summary>
+        Mandatory
+    }
+
+    /// <summary>
+    /// Adding this attribute to a property and running the type through the parser will extract present environment variables and set the value of the property.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class EnvironmentVariableAttribute : Attribute
@@ -15,7 +31,7 @@ namespace Porto.Attributes
         public EnvironmentVariableAttribute(string name)
         {
             Name = name;
-            Optional = false;
+            Presence = Presence.Mandatory;
         }
 
         /// <summary>
@@ -26,7 +42,7 @@ namespace Porto.Attributes
         public EnvironmentVariableAttribute(string name, string description)
         {
             Name = name;
-            Optional = false;
+            Presence = Presence.Mandatory;
             Description = description;
         }
 
@@ -34,12 +50,12 @@ namespace Porto.Attributes
         /// Constructor.
         /// </summary>
         /// <param name="name">Environment variable name.</param>
-        /// <param name="optional">True if the environment variable must be set; False otherwise. Default is mandatory.</param>
+        /// <param name="presence">If presence is set to Mandatory and the variable has not been set then an exception will be thrown.</param>
         /// <param name="description">An optional description of the environment variable's purpose.</param>
-        public EnvironmentVariableAttribute(string name, bool optional = false, string description = null)
+        public EnvironmentVariableAttribute(string name, Presence presence = Presence.Mandatory, string description = null)
         {
             Name = name;
-            Optional = optional;
+            Presence = presence;
             Description = description;
         }
 
@@ -56,6 +72,6 @@ namespace Porto.Attributes
         /// <summary>
         /// Gets a value indicating whether the environment variable must be set or not.
         /// </summary>
-        public bool Optional { get; }
+        public Presence Presence { get; }
     }
 }

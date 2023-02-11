@@ -6,9 +6,13 @@ using System.Text.RegularExpressions;
 
 namespace Porto.Utlities
 {
-    public class PCertificatesUtility
+    /// <summary>
+    /// Various certificate-related utility methods.
+    /// </summary>
+    public class CertificatesUtility : ICertificatesUtility
     {
-        public static X509Certificate2 LoadBySubject(string subjectName)
+        /// <inheritdoc/>
+        public X509Certificate2 LoadBySubject(string subjectName)
         {
             using X509Store store = new X509Store(StoreLocation.LocalMachine);
             store.Open(OpenFlags.ReadOnly);
@@ -19,7 +23,8 @@ namespace Porto.Utlities
             return matchingCerts[0];
         }
 
-        public static X509Certificate2 LoadBySubjectRegex(string pattern)
+        /// <inheritdoc/>
+        public X509Certificate2 LoadBySubjectRegex(string pattern)
         {
             using X509Store store = new X509Store(StoreLocation.LocalMachine);
             store.Open(OpenFlags.ReadOnly);
@@ -41,8 +46,11 @@ namespace Porto.Utlities
             return matchingCerts.ElementAt(0);
         }
 
-        public static X509Certificate2 LoadFromFile(string path, string password)
+        /// <inheritdoc/>
+        public X509Certificate2 LoadFromFile(string path, string password)
         {
+            if (!File.Exists(path)) return null;
+
             var secureString = new SecureString();
             foreach (var c in password)
                 secureString.AppendChar(c);
