@@ -75,7 +75,7 @@ public class TestClass
     {
         // Arrange
         var mockFile = new Mock<IPFile>();
-        mockFile.Setuo(x => x.Exists(It.IsAny<string>())).Throws<Exception>();
+        mockFile.Setup(x => x.Exists(It.IsAny<string>())).Throws<Exception>();
 
         var testSubject = new TestSubject(mockFile.Object);
 
