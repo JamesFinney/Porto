@@ -19,7 +19,7 @@ dotnet add package Porto
 
 ### Environment Variable Attribute
 
-Add the attribute to any properties that you'd like to set using Environment Variables. Then call the EnvironmentVariableParser.Parse<T>() method to the properties from the Environment.
+Add the attribute to any properties that you'd like to set using Environment Variables. Then call the EnvironmentVariableParser.Parse<T>() method to load the properties from the Environment into a new instance (or an existing one if provided as an argument).
 
 ```csharp
 using Porto.Attributes;
@@ -75,7 +75,7 @@ public class TestClass
     {
         // Arrange
         var mockFile = new Mock<IPFile>();
-        mockFile.Setuo(x => x.Exists(It.IsAny<string>())).Throws<Exception>();
+        mockFile.Setup(x => x.Exists(It.IsAny<string>())).Throws<Exception>();
 
         var testSubject = new TestSubject(mockFile.Object);
 
