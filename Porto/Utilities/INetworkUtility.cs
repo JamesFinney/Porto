@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 
-namespace Porto.Utlities
+namespace Porto.Utilities
 {
     public interface INetworkUtility
     {

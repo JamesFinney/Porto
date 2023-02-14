@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 
-namespace Porto.Utlities
+namespace Porto.Utilities
 {
     public interface ICertificatesUtility
     {
