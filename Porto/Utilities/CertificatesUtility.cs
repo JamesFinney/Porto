@@ -4,7 +4,7 @@ using System.Security;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace Porto.Utlities
+namespace Porto.Utilities
 {
     /// <summary>
     /// Various certificate-related utility methods.

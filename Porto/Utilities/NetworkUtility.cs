@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Net;
 
-namespace Porto.Utlities
+namespace Porto.Utilities
 {
     /// <summary>
     /// Various network-based utility methods.

@@ -12,6 +12,7 @@
     <Copyright>James Finney</Copyright>
     <PackageProjectUrl>https://github.com/JamesFinney/Porto</PackageProjectUrl>
     <Version>1.0.1</Version>
+    <PackageTags>environment, variables, utilities, extensions, interface, attributes</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
